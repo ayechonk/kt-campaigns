@@ -1,19 +1,14 @@
 <template>
 	<div class="container mt-1 ">
-		<h2>Your Narrative Dataslates</h2>
-		<div v-for="c in campaigns" :key="c.name">
-			<CampaignCard :name="c.name" />
-		</div>
-		
-		<router-link to="/new-campaign">
-			<OrangeCard title="New Campaign" />
-		</router-link>
-		<!-- <font-awesome-icon v-bind:class="{ formOpen: formOpen }" icon="fa-solid fa-angle-down" @click="alert" /> -->
-		<!-- <form class="row" v-bind:class="{ formOpen: formOpen }">
+		<h2>New Campaign</h2>
+		<font-awesome-icon class="btn-orange" icon="fa-solid fa-floppy-disk" @click="saveCampaign" />
+		<form class="row">
 			<div class="col-sm-4">
 				<div class="form-floating mb-3">
-					<input type="text" class="form-control " v-model="name" placeholder="Kill Team Name">
-					<label>Kill Team Name</label>
+					<input type="text" class="form-control" :class="{ 'is-invalid': errors['name'] }" v-model="name"
+						placeholder="Kill Team Name">
+					<label v-if="!errors['name']">Kill Team Name</label>
+					<label v-if="errors['name']" class="orange">You must have a unique name!</label>
 				</div>
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control " v-model="playerName" placeholder="playerName" />
@@ -68,41 +63,84 @@
 					<label>Strategic Assets</label>
 				</div>
 			</div>
-		</form> -->
+		</form>
 	</div>
 </template>
 
 <script>
-import store from 'store-js'
-import CampaignCard from './CampaignCard.vue'
-import OrangeCard from './layout/OrangeCard.vue'
+import store from "store-js";
 
-// import store from "store-js";
 export default {
-	name: 'DataSlates',
-	components: {
-		CampaignCard,
-		OrangeCard
-	},
-	"events": [],
+	"name": 'NewDataslate',
 	"data": function () {
 		return {
-			"campaigns": [],
+			"errors": {},
+			"name": "",
+			"playerName": "",
+			"faction": "",
+			"selectableKeywords": "",
+			"baseOfOperations": "",
+			"history": "",
+			"quirks": "",
+			"requisitionPoints": 0,
+			"assetCapacity": 0,
+			"stash": "",
+			"notes": "",
+			"specOpsLog1": "",
+			"specOpsLog2": "",
+			"specOpsLog3": "",
+			"strategicAssets": ""
 		}
 	},
 	methods: {
-		alert: function () {
-			this.formOpen = !this.formOpen
+		saveCampaign: function () {
+			this.errors['name'] = !this.name;
+			if (this.name) {
+				let campaigns = store.get("campaigns");
+				if (campaigns[this.name]) this.errors['name'] = true;
+				else {
+					let newCampaign = {
+						"name": this.name,
+						"playerName": this.playerName,
+						"faction": this.faction,
+						"selectableKeywords": this.selectableKeywords,
+						"baseOfOperations": this.baseOfOperations,
+						"history": this.history,
+						"quirks": this.quirks,
+						"requisitionPoints": this.requisitionPoints,
+						"assetCapacity": this.assetCapacity,
+						"stash": this.stash,
+						"notes": this.notes,
+						"specOpsLog1": this.specOpsLog1,
+						"specOpsLog2": this.specOpsLog2,
+						"specOpsLog3": this.specOpsLog3
+					}
+					if (!campaigns) campaigns = {};
+					campaigns[this.name] = newCampaign;
+					store.set("campaigns", campaigns);
+				}
+			}
 		}
-	},
-	"beforeMount": function () {
-		let campaigns = store.get("campaigns");
-		if (!campaigns) {
-			campaigns = {};
-			store.set("campaigns", campaigns);
-		}
-		this.campaigns = campaigns;
-	},
+	}
+	// "beforeMount": function () {
+	// 	let dataslate = store.get('dataslate');
+	// 	if (dataslate) {
+	// 		this.name = dataslate.name;
+	// 		this.playerName = dataslate.playerName;
+	// 		this.faction = dataslate.faction;
+	// 		this.selectableKeywords = dataslate.selectableKeywords;
+	// 		this.baseOfOperations = dataslate.baseOfOperations;
+	// 		this.history = dataslate.history;
+	// 		this.quirks = dataslate.quirks;
+	// 		this.requisitionPoints = dataslate.requisitionPoints;
+	// 		this.assetCapacity = dataslate.assetCapacity;
+	// 		this.stash = dataslate.stash;
+	// 		this.notes = dataslate.notes;
+	// 		this.specOpsLog1 = dataslate.specOpsLog1;
+	// 		this.specOpsLog2 = dataslate.specOpsLog2;
+	// 		this.specOpsLog3 = dataslate.specOpsLog3;
+	// 	}
+	// },
 	// "updated": function () {
 	// 	let dataslate = {
 	// 		"name": this.name,
@@ -127,41 +165,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-textarea {
-	height: 169px !important;
+.orange {
+	color: #c54c21 !important;
 }
 
-h2 {
-	text-align: left;
-}
-
-svg {
+.btn-orange {
+	position: fixed;
+	font-size: 2.5rem;
+	background-color: #c54c21;
+	padding: 20px;
+	border-radius: 40px;
+	bottom: 20px;
+	right: 20px;
+	z-index: 100;
 	cursor: pointer;
-}
-
-form {
-	background-color: #555;
-}
-
-svg {
-	transition: all 300ms;
-}
-
-svg.formOpen {
-	transform: rotate(180deg);
-}
-
-form {
-	max-height: 0;
-	transition: max-height 300ms;
-	overflow: hidden;
-}
-
-form.formOpen {
-	max-height: 2000px;
-}
-
-* {
-	text-align: left;
+	height: 40px;
+	width: 40px;
 }
 </style>

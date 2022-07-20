@@ -1,31 +1,35 @@
 <template>
   <div>
-    <img alt="KillTeam logo" id="img-logo" src="./assets/logo.png">
-    <DataSlates />
-    <DataCard />
+    <router-link to="/">
+      <h1 class="mt-3">Kill Team 2021 Campaign Manager</h1>
+    </router-link>
+    <div class="my-3">
+      <router-link to="/">
+        <img alt="KillTeam logo" id="img-logo" src="./assets/logo.png">
+      </router-link>
+    </div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-import DataSlates from './components/DataSlates.vue'
-import DataCard from './components/DataCard.vue'
-
 export default {
-  name: 'App',
-  components: {
-    // HelloWorld,
-    DataSlates,
-    DataCard
-  }
+  name: 'App'
 }
 </script>
 
 <style>
-@font-face{
+@font-face {
   font-family: "Roboto";
   src: local("Roboto"), url("./assets/fonts/Roboto-Regular.ttf") format("truetype")
 }
+
+@font-face {
+  font-family: 'Impact';
+  src: local("Impact"), url("./assets/fonts/Anton-Regular.ttf") format("truetype")
+}
+
+
 #app {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -46,11 +50,27 @@ input,
 textarea,
 select,
 option {
-  color: #bbb !important;
+  color: #eee !important;
   background-color: #333 !important;
+  border-radius: 0 !important;
+  border-color: #c54c21 !important;
 }
 
 select {
   cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Impact", sans-serif;
+}
+
+a {
+  color: #8080ff !important;
+  text-decoration: none !important;
 }
 </style>

@@ -2,19 +2,29 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
-
-/* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
-
-/* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faAngleDown, faPlus, faSave } from '@fortawesome/free-solid-svg-icons'
+import { createRouter, createWebHistory } from 'vue-router'
 
-/* import specific icons */
-import { faAngleDown, faPlus } from '@fortawesome/free-solid-svg-icons'
+import DataSlates from './components/DataSlates.vue'
+import DataCard from './components/DataCard.vue'
+import NewDataslate from './components/NewDataslate.vue'
+import EditCampaign from './components/EditCampaign.vue'
 
-/* add icons to the library */
-library.add(faAngleDown, faPlus)
+const routes = [
+	{ path: '/', component: DataSlates },
+	{ path: '/new-campaign', component: NewDataslate },
+	{ path: '/campaign/:campaignName', name: "campaign", component: EditCampaign, props: true },
+	{ path: '/cards', component: DataCard },
+]
+const router = createRouter({
+	history: createWebHistory(),
+	routes,
+})
+library.add(faAngleDown, faPlus, faSave)
 
 createApp(App)
-.component('font-awesome-icon', FontAwesomeIcon)
-.mount('#app')
+	.component('font-awesome-icon', FontAwesomeIcon)
+	.use(router)
+	.mount('#app')
