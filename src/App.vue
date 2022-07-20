@@ -77,4 +77,10 @@ a {
 .text-orange {
 	color: #c54c21 !important;
 }
+.bg-orange {
+	background-color: #c54c21 !important;
+}
+.btn {
+  border-radius: 0 !important;
+}
 </style>

@@ -121,6 +121,7 @@ export default {
 						campaigns = {};
 					campaigns[this.name] = newCampaign;
 					store.set("campaigns", campaigns);
+					this.$router.push("/campaign/"+this.name)
 				}
 			}
 		}

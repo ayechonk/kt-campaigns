@@ -1,19 +1,21 @@
 <template>
 	<router-link to="/">
 		<div class="bg-orange mb-3" style="padding:2px">
-			<div class="text-start corner p-3">
+			<div class="text-start corner p-0">
 				<div class="d-flex align-items-center">
 					<div class="me-3">
-						<img style="display:inline-block; width: 3.5rem;"
+						<img style="display:inline-block; width: 3.5rem; filter: invert(1);"
 							v-bind:src="require('@/assets/imgs/rank/' + getRank(op.experience).toLowerCase() + '.png')" />
-						<img v-if="op.specialism" style="display:inline-block"
+						<img v-if="op.specialism" style="display:inline-block; filter: invert(1)"
 							v-bind:src="require('@/assets/imgs/specialism/' + op.specialism.toLowerCase() + '.png')" />
 					</div>
 					<div>
 						<div>{{ op.operative }}</div>
 						<div> {{ op.operativeType }}</div>
 					</div>
-
+					<div style="flex-grow:1;" class="text-end">
+						<img v-bind:src="require('@/assets/imgs/operatives/' + op.operativeType.toLowerCase() + '.png')" alt="" style="width:4.5rem;">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -49,9 +51,6 @@ export default {
 	color: #eee;
 }
 
-img {
-	filter: invert(1);
-}
 
 .bg-orange {
 	background-color: #c54c21;
@@ -62,7 +61,4 @@ img {
 	background: linear-gradient(225deg, transparent 13px, #191b1c 0);
 }
 
-img {
-	width: 2.5rem;
-}
 </style>
