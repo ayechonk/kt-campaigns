@@ -73,4 +73,8 @@ a {
   color: #8080ff !important;
   text-decoration: none !important;
 }
+
+.text-orange {
+	color: #c54c21 !important;
+}
 </style>

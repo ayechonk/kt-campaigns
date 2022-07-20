@@ -1,14 +1,14 @@
 <template>
 	<div class="container mt-1 ">
 		<h2>New Campaign</h2>
-		<font-awesome-icon class="btn-orange" icon="fa-solid fa-floppy-disk" @click="saveCampaign" />
+		<SaveButton @click="saveCampaign" />
 		<form class="row">
 			<div class="col-sm-4">
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control" :class="{ 'is-invalid': errors['name'] }" v-model="name"
 						placeholder="Kill Team Name">
 					<label v-if="!errors['name']">Kill Team Name</label>
-					<label v-if="errors['name']" class="orange">You must have a unique name!</label>
+					<label v-if="errors['name']" class="text-orange">You must have a unique name!</label>
 				</div>
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control " v-model="playerName" placeholder="playerName" />
@@ -69,9 +69,10 @@
 
 <script>
 import store from "store-js";
+import SaveButton from "./layout/SaveButton.vue";
 
 export default {
-	"name": 'NewDataslate',
+	"name": "NewDataslate",
 	"data": function () {
 		return {
 			"errors": {},
@@ -90,14 +91,15 @@ export default {
 			"specOpsLog2": "",
 			"specOpsLog3": "",
 			"strategicAssets": ""
-		}
+		};
 	},
 	methods: {
 		saveCampaign: function () {
-			this.errors['name'] = !this.name;
+			this.errors["name"] = !this.name;
 			if (this.name) {
 				let campaigns = store.get("campaigns");
-				if (campaigns[this.name]) this.errors['name'] = true;
+				if (campaigns[this.name])
+					this.errors["name"] = true;
 				else {
 					let newCampaign = {
 						"name": this.name,
@@ -114,8 +116,9 @@ export default {
 						"specOpsLog1": this.specOpsLog1,
 						"specOpsLog2": this.specOpsLog2,
 						"specOpsLog3": this.specOpsLog3
-					}
-					if (!campaigns) campaigns = {};
+					};
+					if (!campaigns)
+						campaigns = {};
 					campaigns[this.name] = newCampaign;
 					store.set("campaigns", campaigns);
 				}
@@ -160,26 +163,12 @@ export default {
 	// 	};
 	// 	store.set("dataslate", dataslate);
 	// }
+	,
+	components: { SaveButton }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.orange {
-	color: #c54c21 !important;
-}
 
-.btn-orange {
-	position: fixed;
-	font-size: 2.5rem;
-	background-color: #c54c21;
-	padding: 20px;
-	border-radius: 40px;
-	bottom: 20px;
-	right: 20px;
-	z-index: 100;
-	cursor: pointer;
-	height: 40px;
-	width: 40px;
-}
 </style>

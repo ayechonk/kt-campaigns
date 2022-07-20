@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<router-link :to="{ name: 'campaign', params: { campaignName:name}}">
+		<router-link :to="{ name: 'campaign', params: { campaignName: name } }">
 			<OrangeCard :title="name" />
 		</router-link>
 	</div>

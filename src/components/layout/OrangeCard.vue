@@ -1,6 +1,6 @@
 <template>
 	<div class="bg-orange mb-3" style="padding:2px">
-		<div class="corner p-3">
+		<div class="text-start corner p-3">
 			{{ title }}
 		</div>
 	</div>

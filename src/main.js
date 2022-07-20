@@ -11,11 +11,15 @@ import DataSlates from './components/DataSlates.vue'
 import DataCard from './components/DataCard.vue'
 import NewDataslate from './components/NewDataslate.vue'
 import EditCampaign from './components/EditCampaign.vue'
+import CampaignOperatives from './components/CampaignOperatives.vue'
+import CampaignOperative from './components/CampaignOperative.vue'
 
 const routes = [
 	{ path: '/', component: DataSlates },
 	{ path: '/new-campaign', component: NewDataslate },
 	{ path: '/campaign/:campaignName', name: "campaign", component: EditCampaign, props: true },
+	{ path: '/campaign/:campaignName/operatives', name: "campaignOps", component: CampaignOperatives, props: true },
+	{ path: '/campaign/:campaignName/operatives/new', name: "newOp", component: CampaignOperative, props: true },
 	{ path: '/cards', component: DataCard },
 ]
 const router = createRouter({
