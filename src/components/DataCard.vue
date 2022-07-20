@@ -83,7 +83,7 @@ export default {
 			});
 		},
 		"getRank": function (exp) {
-			if (exp <= 5) return "Adpet";
+			if (exp <= 5) return "Adept";
 			else if (exp <= 15) return "Veteran";
 			else if (exp <= 30) return "Ace";
 			else if (exp <= 50) return "Grizzled";

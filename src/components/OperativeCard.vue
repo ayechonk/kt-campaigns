@@ -1,0 +1,68 @@
+<template>
+	<router-link to="/">
+		<div class="bg-orange mb-3" style="padding:2px">
+			<div class="text-start corner p-3">
+				<div class="d-flex align-items-center">
+					<div class="me-3">
+						<img style="display:inline-block; width: 3.5rem;"
+							v-bind:src="require('@/assets/imgs/rank/' + getRank(op.experience).toLowerCase() + '.png')" />
+						<img v-if="op.specialism" style="display:inline-block"
+							v-bind:src="require('@/assets/imgs/specialism/' + op.specialism.toLowerCase() + '.png')" />
+					</div>
+					<div>
+						<div>{{ op.operative }}</div>
+						<div> {{ op.operativeType }}</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</router-link>
+</template>
+<script>
+export default {
+	name: "OperativeCard",
+	props: {
+		op: Object
+	},
+	methods: {
+		getOperativeName: function (op) {
+			return this.getRank(op.experience) + " " + op.specialism + " " + op.operative + " - " + op.operativeType
+		},
+		getRank: function (exp) {
+			if (exp <= 5)
+				return "Adept";
+			else if (exp <= 15)
+				return "Veteran";
+			else if (exp <= 30)
+				return "Ace";
+			else if (exp <= 50)
+				return "Grizzled";
+			else
+				return "Revered";
+		}
+	}
+}
+</script>
+<style>
+* {
+	color: #eee;
+}
+
+img {
+	filter: invert(1);
+}
+
+.bg-orange {
+	background-color: #c54c21;
+}
+
+.corner {
+	padding: 14px;
+	background: linear-gradient(225deg, transparent 13px, #191b1c 0);
+}
+
+img {
+	width: 2.5rem;
+}
+</style>

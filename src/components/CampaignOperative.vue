@@ -71,7 +71,7 @@ export default {
 	methods: {
 		"getRank": function (exp) {
 			if (exp <= 5)
-				return "Adpet";
+				return "Adept";
 			else if (exp <= 15)
 				return "Veteran";
 			else if (exp <= 30)

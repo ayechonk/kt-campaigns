@@ -2,7 +2,8 @@
 	<div class="container mt-1 ">
 		<h2 class="text-start">{{ campaignName }} - Operatives</h2>
 		<div v-for="op in operatives" :key="op.operative">
-			<OrangeCard :title="op.operative" />
+		<OperativeCard :op="op"/>
+			<!-- <OrangeCard :title="getOperativeName(op)" /> -->
 		</div>
 		<router-link :to="{ name: 'newOp', params: { campaignName } }">
 			<OrangeCard style="cursor:pointer" title="Add New Operative" />
@@ -12,6 +13,7 @@
 <script>
 import store from 'store-js';
 import OrangeCard from './layout/OrangeCard.vue';
+import OperativeCard from './OperativeCard.vue';
 export default {
 	name: "CampaignOperatives",
 	props: {
@@ -35,6 +37,6 @@ export default {
 		}
 		this.operatives = curOps;
 	},
-	components: { OrangeCard }
+	components: { OrangeCard, OperativeCard }
 }
 </script>
