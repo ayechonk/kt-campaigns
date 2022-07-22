@@ -2,10 +2,9 @@
 	<div class="container mt-1 ">
 		<h2 class="text-start">{{ campaignName }} - Operatives</h2>
 		<div v-for="op in operatives" :key="op.operative">
-		<OperativeCard :op="op"/>
-			<!-- <OrangeCard :title="getOperativeName(op)" /> -->
+			<OperativeCard :campaignName="campaignName" :op="op" />
 		</div>
-		<router-link :to="{ name: 'newOp', params: { campaignName } }">
+		<router-link :to="{ name: 'operativeSingle', params: { campaignName } }">
 			<OrangeCard style="cursor:pointer" title="Add New Operative" />
 		</router-link>
 	</div>

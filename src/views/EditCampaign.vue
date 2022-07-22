@@ -7,15 +7,15 @@
 		<OrangeCard style="cursor:pointer;" title="Engage Combat!" @click="alert" />
 		<OrangeCard style="cursor:pointer;" title="Edit Campaign" @click="alert" />
 		<OrangeCard style="cursor:pointer;" title="Delete This Campaign" @click="openDeleteCampaignModal" />
-		<Modal @close="confirmDeleteCampaign" :modalDisplay="deleteCampaignModalDisplay"
-			message="Are you sure you want to delete this campaign?" />
+		<Modal @close="confirmDeleteCampaign" :modalDisplay="deleteCampaignModalDisplay" message="Are you sure you want to delete this campaign?" >Delete</Modal>
 	</div>
 </template>
 
 <script>
 import store from "store-js";
-import OrangeCard from "./layout/OrangeCard.vue";
-import Modal from "./layout/Modal.vue";
+import OrangeCard from "@/components/layout/OrangeCard.vue";
+import Modal from "@/components/layout/Modal.vue";
+
 export default {
 	name: 'EditCampaign',
 	components: { OrangeCard, Modal },
@@ -51,7 +51,6 @@ export default {
 			else {
 				this.deleteCampaignModalDisplay = "none";
 			}
-
 		},
 		alert: function () {
 			alert('foo')

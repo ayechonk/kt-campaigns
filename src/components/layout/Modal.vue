@@ -9,7 +9,7 @@
 						{{ message }}
 					</div>
 					<div class="modal-footer">
-						<button type="button" @click="$emit('close', true)" class="btn bg-orange">Delete</button>
+						<button type="button" @click="$emit('close', true)" class="btn bg-orange"><slot>Confirm</slot></button>
 						<button type="button" @click="$emit('close', false)" class="btn btn-secondary">Cancel</button>
 					</div>
 				</div>

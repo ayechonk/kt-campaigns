@@ -8,19 +8,17 @@ import { faAngleDown, faPlus, faSave } from '@fortawesome/free-solid-svg-icons'
 import { createRouter, createWebHistory } from 'vue-router'
 
 import DataSlates from './components/DataSlates.vue'
-import DataCard from './components/DataCard.vue'
-import NewDataslate from './components/NewDataslate.vue'
-import EditCampaign from './components/EditCampaign.vue'
+import EditCampaign from './views/EditCampaign.vue'
+import CampaignForm from './components/CampaignForm.vue'
 import CampaignOperatives from './components/CampaignOperatives.vue'
-import CampaignOperative from './components/CampaignOperative.vue'
+import OperativeSingle from './views/OperativeSingle.vue'
 
 const routes = [
 	{ path: '/', component: DataSlates },
-	{ path: '/new-campaign', component: NewDataslate },
+	{ path: '/new-campaign', component: CampaignForm },
 	{ path: '/campaign/:campaignName', name: "campaign", component: EditCampaign, props: true },
 	{ path: '/campaign/:campaignName/operatives', name: "campaignOps", component: CampaignOperatives, props: true },
-	{ path: '/campaign/:campaignName/operatives/new', name: "newOp", component: CampaignOperative, props: true },
-	{ path: '/cards', component: DataCard },
+	{ path: '/campaign/:campaignName/operative/:operativeName?', name: "operativeSingle", component: OperativeSingle, props: true },
 ]
 const router = createRouter({
 	history: createWebHistory(),

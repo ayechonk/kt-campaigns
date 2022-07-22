@@ -1,20 +1,20 @@
 <template>
-	<router-link to="/">
+	<router-link :to="{ name: 'operativeSingle', params: { campaignName, operativeName: op.operative } }">
 		<div class="bg-orange mb-3" style="padding:2px">
 			<div class="text-start corner p-0">
 				<div class="d-flex align-items-center">
 					<div class="me-3">
 						<img style="display:inline-block; width: 3.5rem; filter: invert(1);"
-							v-bind:src="require('@/assets/imgs/rank/' + getRank(op.experience).toLowerCase() + '.png')" />
+							v-bind:src="require('@/assets/images/rank/' + getRank(op.experience).toLowerCase() + '.png')" />
 						<img v-if="op.specialism" style="display:inline-block; filter: invert(1)"
-							v-bind:src="require('@/assets/imgs/specialism/' + op.specialism.toLowerCase() + '.png')" />
+							v-bind:src="require('@/assets/images/specialism/' + op.specialism.toLowerCase() + '.png')" />
 					</div>
 					<div>
 						<div>{{ op.operative }}</div>
 						<div> {{ op.operativeType }}</div>
 					</div>
 					<div style="flex-grow:1;" class="text-end">
-						<img v-bind:src="require('@/assets/imgs/operatives/' + op.operativeType.toLowerCase() + '.png')" alt="" style="width:4.5rem;">
+						<img v-bind:src="getOperativeImgUrl(op)" alt="" style="width:4.5rem;">
 					</div>
 				</div>
 			</div>
@@ -25,11 +25,20 @@
 export default {
 	name: "OperativeCard",
 	props: {
+		campaignName: String,
 		op: Object
 	},
 	methods: {
 		getOperativeName: function (op) {
 			return this.getRank(op.experience) + " " + op.specialism + " " + op.operative + " - " + op.operativeType
+		},
+		getOperativeImgUrl: function(op){
+			try{
+			return require('@/assets/images/operatives/' + op.operativeType.toLowerCase() + '.png')
+			}
+			catch {
+				return "";
+			}
 		},
 		getRank: function (exp) {
 			if (exp <= 5)
@@ -60,5 +69,4 @@ export default {
 	padding: 14px;
 	background: linear-gradient(225deg, transparent 13px, #191b1c 0);
 }
-
 </style>

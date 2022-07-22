@@ -5,7 +5,7 @@
     </router-link>
     <div class="my-3">
       <router-link to="/">
-        <img alt="KillTeam logo" id="img-logo" src="./assets/logo.png">
+        <img alt="KillTeam logo" id="img-logo" src="./assets/logo.png" style="filter:invert(1)">
       </router-link>
     </div>
     <router-view></router-view>
