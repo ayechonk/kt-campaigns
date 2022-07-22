@@ -4,43 +4,34 @@
 		<SaveButton @click="saveCampaign" />
 		<form class="row">
 			<div class="col-sm-4">
-				<div class="form-floating mb-3">
+				<div class="mb-3">
 					<TextboxInput v-model="name" label="Kill Team Name" errorLabel="You must have a unique name!"
 						:isValid="!errors['name']" />
 				</div>
-				<div class="form-floating mb-3">
-					<input type="text" class="form-control " v-model="playerName" placeholder="playerName" />
-					<label>Player Name</label>
+				<div class="mb-3">
+					<SelectInput v-model="faction" :options="getKillTeamOptionsArray" label="Faction"
+						errorLabel="You must select a faction!" :isValid="!errors['faction']" />
 				</div>
-				<div class="form-floating mb-3">
-					<SelectInput v-model="faction" :options="killTeams" label="Faction" errorLabel="You must select a faction!"
-						:isValid="!errors['faction']" />
+				<div class="mb-3">
+					<TextboxInput v-model="baseOfOperations" label="Base of Operations" />
 				</div>
-				<div class="form-floating mb-3">
-					<input type="text" class="form-control " v-model="selectableKeywords" placeholder="selectableKeywords" />
-					<label>Selectable Keywords</label>
+				<div class="mb-3">
+					<TextboxInput v-model="history" label="History" />
 				</div>
-				<div class="form-floating mb-3">
-					<input type="text" class="form-control " v-model="baseOfOperations" placeholder="baseOfOperations" />
-					<label>Base of Operations</label>
-				</div>
-				<div class="form-floating mb-3">
-					<input type="text" class="form-control " v-model="history" placeholder="history" />
-					<label>History</label>
-				</div>
-				<div class="form-floating mb-3">
-					<input type="text" class="form-control " v-model="quirks" placeholder="quirks" />
-					<label>Quirks</label>
+				<div class="mb-3">
+					<TextboxInput v-model="quirks" label="Quirks" />
 				</div>
 			</div>
 			<div class="col-sm-4">
-				<div class="form-floating mb-3">
-					<input type="number" class="form-control " v-model="requisitionPoints" placeholder="Kill Team Name">
-					<label>Requisition Points</label>
+				<div class="mb-3">
+					<TextboxInput inputType="number" v-model="requisitionPoints" label="Requisition Points" />
+				</div>
+				<div class="mb-3">
+					<TextboxInput inputType="number" v-model="assetCapacity" label="Asset Capacity" />
 				</div>
 				<div class="form-floating mb-3">
-					<input type="number" class="form-control " v-model="assetCapacity" placeholder="Kill Team Name">
-					<label>Asset Capacity</label>
+					<textarea class="form-control " v-model="strategicAssets" placeholder="Kill Team Name"> </textarea>
+					<label>Strategic Assets</label>
 				</div>
 				<div class="form-floating mb-3">
 					<textarea class="form-control " v-model="stash" placeholder="Stash"></textarea>
@@ -52,13 +43,17 @@
 				</div>
 			</div>
 			<div class="col-sm-4">
-				<div class="form-floating mb-3">
-					<textarea class="form-control " v-model="specOpsLog1" placeholder="Kill Team Name"> </textarea>
-					<label>Spec Ops Log</label>
+				<div class="mb-3">
+					<SelectInput v-model="specOps1" :options="getSpecOpsArrayOptions" label="Spec Ops 1"
+						errorLabel="You must pick at least one spec op!" :isValid="!errors['specOps1']" />
 				</div>
-				<div class="form-floating mb-3">
-					<textarea class="form-control " v-model="strategicAssets" placeholder="Kill Team Name"> </textarea>
-					<label>Strategic Assets</label>
+				<div class="mb-3">
+					<SelectInput v-model="specOps2" :options="getSpecOpsArrayOptions" label="Spec Ops 2"
+						errorLabel="You must pick at least one spec op!" :isValid="!errors['specOps2']" />
+				</div>
+				<div class="mb-3">
+					<SelectInput v-model="specOps3" :options="getSpecOpsArrayOptions" label="Spec Ops 3"
+						errorLabel="You must pick at least one spec op!" :isValid="!errors['specOps3']" />
 				</div>
 			</div>
 		</form>
@@ -66,32 +61,32 @@
 </template>
 
 <script>
-import store from "store-js";
 import SaveButton from "./layout/SaveButton.vue";
 import SelectInput from "./layout/SelectInput.vue";
-import killTeams from "@/assets/ktdata/killteams.json"
 import TextboxInput from "./layout/TextboxInput.vue";
 
+import store from "store-js"
+import specOps from "@/assets/ktdata/specops.json"
+import killTeams from "@/assets/ktdata/killteams.json"
+
+
 export default {
-	"name": "NewDataslate",
+	"name": "NewCampaign",
 	"data": function () {
 		return {
-			"killTeams": [],
 			"errors": {},
 			"name": "",
-			"playerName": "",
-			"faction": "",
-			"selectableKeywords": "",
+			"faction": "0",
 			"baseOfOperations": "",
 			"history": "",
 			"quirks": "",
-			"requisitionPoints": 0,
-			"assetCapacity": 0,
+			"requisitionPoints": 4,
+			"assetCapacity": 2,
 			"stash": "",
 			"notes": "",
-			"specOpsLog1": "",
-			"specOpsLog2": "",
-			"specOpsLog3": "",
+			"specOps1": "",
+			"specOps2": "",
+			"specOps3": "",
 			"strategicAssets": ""
 		};
 	},
@@ -99,6 +94,7 @@ export default {
 		validateCampaign: function () {
 			this.errors.name = !this.name || this.name === ""
 			this.errors.faction = !this.faction || this.faction === ""
+			this.errors.specOps1 = !this.specOps1 || this.specOps1 === ""
 			return Object.keys(this.errors).find(b => b);
 		},
 		saveCampaign: function () {
@@ -110,9 +106,7 @@ export default {
 					else {
 						let newCampaign = {
 							"name": this.name,
-							"playerName": this.playerName,
 							"faction": this.faction,
-							"selectableKeywords": this.selectableKeywords,
 							"baseOfOperations": this.baseOfOperations,
 							"history": this.history,
 							"quirks": this.quirks,
@@ -120,9 +114,9 @@ export default {
 							"assetCapacity": this.assetCapacity,
 							"stash": this.stash,
 							"notes": this.notes,
-							"specOpsLog1": this.specOpsLog1,
-							"specOpsLog2": this.specOpsLog2,
-							"specOpsLog3": this.specOpsLog3
+							"specOps1": this.specOps1,
+							"specOps2": this.specOps2,
+							"specOps3": this.specOps3
 						};
 						if (!campaigns) campaigns = {};
 						campaigns[this.name] = newCampaign;
@@ -133,12 +127,24 @@ export default {
 			}
 		}
 	},
-	beforeMount: function () {
-		this.killTeams = killTeams
-		this.faction = killTeams[0]
+	mounted: function () {
+		this.requisitionPoints = 4;
+		this.assetCapacity = 2;
 	},
 	updated: function () {
 		this.validateCampaign();
+	},
+	computed: {
+		getKillTeamOptionsArray: function () {
+			return Object.entries(killTeams)
+				.map(arr => { return [arr[0], arr[1].name] })
+				.sort((a, b) => (a[1] > b[1] ? 1 : -2))
+		},
+		getSpecOpsArrayOptions: function () {
+			return Object.entries(specOps)
+				.map(arr => { return [arr[0], arr[1].name] })
+				.sort((a, b) => (a[1] > b[1] ? 1 : -2));
+		}
 	},
 	components: { SaveButton, SelectInput, TextboxInput }
 }

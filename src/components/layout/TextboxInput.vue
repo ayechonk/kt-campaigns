@@ -1,6 +1,6 @@
 <template>
 	<div class="form-floating">
-		<input type="text" @input="$emit('update:modelValue', $event.target.value)" class="form-control"
+		<input :type="inputType" @input="$emit('update:modelValue', $event.target.value)" class="form-control"
 			:class="{ 'is-invalid': !isValid }" :placeholder="label" />
 		<label v-if="isValid">{{ label }}</label>
 		<label v-if="!isValid" class="text-orange">{{ errorLabel }}</label>
@@ -11,8 +11,9 @@
 export default {
 	name: "TextboxInput",
 	props: {
-		label: String,
-		errorLabel: String,
+		label: { type: String, deafult: "" },
+		errorLabel: { type: String, deafult: "" },
+		inputType: { type: String, default: "text" },
 		isValid: { type: Boolean, default: true }
 	}
 }

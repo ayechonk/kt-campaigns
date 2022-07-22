@@ -35,10 +35,10 @@
 		<div class="form-floating mb-3">
 			<select class="form-control" v-model="operative.specialism">
 				<option value="">Select Specialism</option>
-				<option>Combat</option>
-				<option>Staunch</option>
-				<option>Marksmen</option>
-				<option>Scout</option>
+				<option value="0">Combat</option>
+				<option value="1">Staunch</option>
+				<option value="2">Marksmen</option>
+				<option value="3">Scout</option>
 			</select>
 			<label>Specialism</label>
 		</div>
