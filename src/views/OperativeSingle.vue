@@ -31,7 +31,7 @@ export default {
             let currentOperatives = operatives[this.campaignName];
             if (!currentOperatives) this.$router.push("/error")
             let key = operative.name;
-            if (this.operativeName && currentOperatives[this.operativeName] ) {
+            if (this.operativeName && currentOperatives[this.operativeName]) {
                 delete currentOperatives[this.operativeName]
             }
             currentOperatives[key] = {
@@ -46,6 +46,7 @@ export default {
             }
             operatives[key] = currentOperatives
             store.set("ops", operatives)
+            this.$router.push('/campaign/' + this.campaignName + '/operatives')
         },
     },
     beforeMount: function () {

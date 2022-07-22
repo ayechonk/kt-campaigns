@@ -7,14 +7,14 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faAngleDown, faPlus, faSave } from '@fortawesome/free-solid-svg-icons'
 import { createRouter, createWebHistory } from 'vue-router'
 
-import DataSlates from './components/DataSlates.vue'
+import Home from './views/Home.vue'
 import EditCampaign from './views/EditCampaign.vue'
 import CampaignForm from './components/CampaignForm.vue'
 import CampaignOperatives from './components/CampaignOperatives.vue'
 import OperativeSingle from './views/OperativeSingle.vue'
 
 const routes = [
-	{ path: '/', component: DataSlates },
+	{ path: '/', component: Home },
 	{ path: '/new-campaign', component: CampaignForm },
 	{ path: '/campaign/:campaignName', name: "campaign", component: EditCampaign, props: true },
 	{ path: '/campaign/:campaignName/operatives', name: "campaignOps", component: CampaignOperatives, props: true },

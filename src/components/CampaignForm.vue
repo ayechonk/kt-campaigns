@@ -5,18 +5,16 @@
 		<form class="row">
 			<div class="col-sm-4">
 				<div class="form-floating mb-3">
-					<input type="text" class="form-control" :class="{ 'is-invalid': errors['name'] }" v-model="name"
-						placeholder="Kill Team Name">
-					<label v-if="!errors['name']">Kill Team Name</label>
-					<label v-if="errors['name']" class="text-orange">You must have a unique name!</label>
+					<TextboxInput v-model="name" label="Kill Team Name" errorLabel="You must have a unique name!"
+						:isValid="!errors['name']" />
 				</div>
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control " v-model="playerName" placeholder="playerName" />
 					<label>Player Name</label>
 				</div>
 				<div class="form-floating mb-3">
-					<input type="text" class="form-control " v-model="faction" placeholder="faction" />
-					<label>Faction</label>
+					<SelectInput v-model="faction" :options="killTeams" label="Faction" errorLabel="You must select a faction!"
+						:isValid="!errors['faction']" />
 				</div>
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control " v-model="selectableKeywords" placeholder="selectableKeywords" />
@@ -70,11 +68,15 @@
 <script>
 import store from "store-js";
 import SaveButton from "./layout/SaveButton.vue";
+import SelectInput from "./layout/SelectInput.vue";
+import killTeams from "@/assets/ktdata/killteams.json"
+import TextboxInput from "./layout/TextboxInput.vue";
 
 export default {
 	"name": "NewDataslate",
 	"data": function () {
 		return {
+			"killTeams": [],
 			"errors": {},
 			"name": "",
 			"playerName": "",
@@ -94,82 +96,53 @@ export default {
 		};
 	},
 	methods: {
+		validateCampaign: function () {
+			this.errors.name = !this.name || this.name === ""
+			this.errors.faction = !this.faction || this.faction === ""
+			return Object.keys(this.errors).find(b => b);
+		},
 		saveCampaign: function () {
-			this.errors["name"] = !this.name;
-			if (this.name) {
-				let campaigns = store.get("campaigns");
-				if (campaigns[this.name])
-					this.errors["name"] = true;
-				else {
-					let newCampaign = {
-						"name": this.name,
-						"playerName": this.playerName,
-						"faction": this.faction,
-						"selectableKeywords": this.selectableKeywords,
-						"baseOfOperations": this.baseOfOperations,
-						"history": this.history,
-						"quirks": this.quirks,
-						"requisitionPoints": this.requisitionPoints,
-						"assetCapacity": this.assetCapacity,
-						"stash": this.stash,
-						"notes": this.notes,
-						"specOpsLog1": this.specOpsLog1,
-						"specOpsLog2": this.specOpsLog2,
-						"specOpsLog3": this.specOpsLog3
-					};
-					if (!campaigns)
-						campaigns = {};
-					campaigns[this.name] = newCampaign;
-					store.set("campaigns", campaigns);
-					this.$router.push("/campaign/"+this.name)
+			if (this.validateCampaign()) {
+				if (this.name) {
+					let campaigns = store.get("campaigns");
+					if (campaigns[this.name])
+						this.errors["name"] = true;
+					else {
+						let newCampaign = {
+							"name": this.name,
+							"playerName": this.playerName,
+							"faction": this.faction,
+							"selectableKeywords": this.selectableKeywords,
+							"baseOfOperations": this.baseOfOperations,
+							"history": this.history,
+							"quirks": this.quirks,
+							"requisitionPoints": this.requisitionPoints,
+							"assetCapacity": this.assetCapacity,
+							"stash": this.stash,
+							"notes": this.notes,
+							"specOpsLog1": this.specOpsLog1,
+							"specOpsLog2": this.specOpsLog2,
+							"specOpsLog3": this.specOpsLog3
+						};
+						if (!campaigns) campaigns = {};
+						campaigns[this.name] = newCampaign;
+						store.set("campaigns", campaigns);
+						this.$router.push("/campaign/" + this.name)
+					}
 				}
 			}
 		}
-	}
-	// "beforeMount": function () {
-	// 	let dataslate = store.get('dataslate');
-	// 	if (dataslate) {
-	// 		this.name = dataslate.name;
-	// 		this.playerName = dataslate.playerName;
-	// 		this.faction = dataslate.faction;
-	// 		this.selectableKeywords = dataslate.selectableKeywords;
-	// 		this.baseOfOperations = dataslate.baseOfOperations;
-	// 		this.history = dataslate.history;
-	// 		this.quirks = dataslate.quirks;
-	// 		this.requisitionPoints = dataslate.requisitionPoints;
-	// 		this.assetCapacity = dataslate.assetCapacity;
-	// 		this.stash = dataslate.stash;
-	// 		this.notes = dataslate.notes;
-	// 		this.specOpsLog1 = dataslate.specOpsLog1;
-	// 		this.specOpsLog2 = dataslate.specOpsLog2;
-	// 		this.specOpsLog3 = dataslate.specOpsLog3;
-	// 	}
-	// },
-	// "updated": function () {
-	// 	let dataslate = {
-	// 		"name": this.name,
-	// 		"playerName": this.playerName,
-	// 		"faction": this.faction,
-	// 		"selectableKeywords": this.selectableKeywords,
-	// 		"baseOfOperations": this.baseOfOperations,
-	// 		"history": this.history,
-	// 		"quirks": this.quirks,
-	// 		"requisitionPoints": this.requisitionPoints,
-	// 		"assetCapacity": this.assetCapacity,
-	// 		"stash": this.stash,
-	// 		"notes": this.notes,
-	// 		"specOpsLog1": this.specOpsLog1,
-	// 		"specOpsLog2": this.specOpsLog2,
-	// 		"specOpsLog3": this.specOpsLog3
-	// 	};
-	// 	store.set("dataslate", dataslate);
-	// }
-	,
-	components: { SaveButton }
+	},
+	beforeMount: function () {
+		this.killTeams = killTeams
+		this.faction = killTeams[0]
+	},
+	updated: function () {
+		this.validateCampaign();
+	},
+	components: { SaveButton, SelectInput, TextboxInput }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 </style>
