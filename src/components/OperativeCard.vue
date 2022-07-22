@@ -1,5 +1,5 @@
 <template>
-	<router-link :to="{ name: 'operativeSingle', params: { campaignName, operativeName: op.operative } }">
+	<router-link :to="{ name: 'operativeSingle', params: { campaignName, operativeName: op.name } }">
 		<div class="bg-orange mb-3" style="padding:2px">
 			<div class="text-start corner p-0">
 				<div class="d-flex align-items-center">
@@ -10,7 +10,7 @@
 							v-bind:src="require('@/assets/images/specialism/' + op.specialism.toLowerCase() + '.png')" />
 					</div>
 					<div>
-						<div>{{ op.operative }}</div>
+						<div>{{ op.name }}</div>
 						<div> {{ op.operativeType }}</div>
 					</div>
 					<div style="flex-grow:1;" class="text-end">

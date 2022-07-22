@@ -30,8 +30,12 @@ export default {
             if (!operatives) this.$router.push("/error");
             let currentOperatives = operatives[this.campaignName];
             if (!currentOperatives) this.$router.push("/error")
-            currentOperatives[operative.name] = {
-                operative: operative.name,
+            let key = operative.name;
+            if (this.operativeName && currentOperatives[this.operativeName] ) {
+                delete currentOperatives[this.operativeName]
+            }
+            currentOperatives[key] = {
+                name: operative.name,
                 operativeType: operative.operativeType,
                 battleHonours: operative.battleHonours,
                 battleScars: operative.battleScars,
@@ -40,7 +44,7 @@ export default {
                 specialism: operative.specialism,
                 experience: operative.experience
             }
-            operatives[this.campaignName] = currentOperatives
+            operatives[key] = currentOperatives
             store.set("ops", operatives)
         },
     },

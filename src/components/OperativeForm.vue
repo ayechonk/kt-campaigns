@@ -106,7 +106,7 @@ export default {
 
 	beforeMount: function () {
 		if (this.currentOperative) {
-			this.operative.name = this.currentOperative.operative,
+			this.operative.name = this.currentOperative.name,
 				this.operative.operativeType = this.currentOperative.operativeType,
 				this.operative.battleHonours = this.currentOperative.battleHonours,
 				this.operative.battleScars = this.currentOperative.battleScars,

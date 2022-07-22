@@ -7,7 +7,8 @@
 		<OrangeCard style="cursor:pointer;" title="Engage Combat!" @click="alert" />
 		<OrangeCard style="cursor:pointer;" title="Edit Campaign" @click="alert" />
 		<OrangeCard style="cursor:pointer;" title="Delete This Campaign" @click="openDeleteCampaignModal" />
-		<Modal @close="confirmDeleteCampaign" :modalDisplay="deleteCampaignModalDisplay" message="Are you sure you want to delete this campaign?" >Delete</Modal>
+		<Modal @close="confirmDeleteCampaign" :modalDisplay="deleteCampaignModalDisplay"
+			message="Are you sure you want to delete this campaign?">Delete</Modal>
 	</div>
 </template>
 
@@ -39,6 +40,10 @@ export default {
 			if (!campaigns) this.$router.push('/error')
 			delete campaigns[this.campaignName];
 			store.set('campaigns', campaigns);
+			let operatives = store.get('ops');
+			if (!operatives) this.$router.push('/error')
+			delete operatives[this.campaignName]
+
 		},
 		openDeleteCampaignModal: function () {
 			this.deleteCampaignModalDisplay = "block";
