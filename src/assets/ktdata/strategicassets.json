@@ -1,0 +1,38 @@
+{
+	"0": {
+			"name": "Engineering Bay",
+			"desc":"At the end of the Set Up Barricades step of the mission sequence, you can select one terrain feature within  of your drop zone. Until the end of the battle, all parts of that feature with the Light trait have the Heavy trait instead."
+	},
+	"1": {
+			"name": "Intelligence Network",
+			"desc":"In each game, if you select the Infiltrate option in the Scouting step, you can use that option one additional time during the first Turning Point."
+	},
+	"2": {
+			"name": "Surveillance System",
+			"desc":"In each game, if you select the Recon option in the Scouting step, you can use that option one additional time when resolving your selection."
+	},
+	"3": {
+			"name": "Expanded Armoury",
+			"desc":"In the Select Equipment step of a mission sequence, you can use 4 additional points worth of equipment to equip operatives from your kill team with."
+	},
+	"4": {
+			"name": "Med Bay",
+			"desc":"In each Update Dataslates step of the mission sequence, you can re-roll one Casualty test. This is in addition to any other Casualty test re-rolls."
+	},
+	"5": {
+			"name": "War Shrine",
+			"desc":"In the Update Experience step of a mission sequence, you can select one operative of Adept rank that was selected for deployment to gain 1XP. You can only add this asset to your base of operations if your "
+	},
+	"6": {
+			"name": "Comms Network",
+			"desc":"Once per battle, when rolling off to determine who has the initiative, you can re-roll your dice."
+	},
+	"7": {
+			"name": "Tactical Uplink",
+			"desc":"Once per Turning Point, you can use a Tactical Ploy without spending any CPs."
+	},
+	"8": {
+			"name": "Stimm Stash",
+			"desc":"In the Update Dataslates step of the mission sequence, each time you take a Recovery test, you can re-roll unmodified results of 1."
+	}
+}

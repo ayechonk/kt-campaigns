@@ -1,0 +1,9 @@
+{
+	"0": {"name": "Nurgling","cost":3, "unique":true, "faction":14},
+	"1": {"name": "Plague Bell","cost":3, "unique":true, "faction":14},
+	"2": {"name": "Blight Grenade","cost":2, "unique":false, "faction":14},
+	"3": {"name": "Krak Grenade","cost":3, "unique":false, "faction":14},
+	"4": {"name": "Filth Censer","cost":3, "unique":true, "faction":14},
+	"5": {"name": "Virulent Rounds","cost":1, "unique":false, "faction":14},
+	"6": {"name": "Mephitic Toxin","cost":2, "unique":false, "faction":14}
+}

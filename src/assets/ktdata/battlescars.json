@@ -1,0 +1,26 @@
+{
+	"1": {
+			"name": "Slain",
+			"desc": "This operative can no longer be used. Remove it from your dataslate."
+	},
+	"2": {
+			"name": "Critical Impairment",
+			"desc": "This operative cannot perform Dash actions and its APL characteristic cannot be increased."
+	},
+	"3": {
+			"name": "Severe Concussion",
+			"desc": "This operative always suffers the penalty to the Ballistic Skill characteristic of its ranged weapons as if it were injured."
+	},
+	"4": {
+			"name": "Sapped Strength",
+			"desc": "This operative always suffers the penalty to the Weapon Skill characteristic of its melee weapons as if it were injured."
+	},
+	"5": {
+			"name": "Lingering Ailment",
+			"desc": "This operative always suffers the penalty to its Movement characteristic as if it were injured."
+	},
+	"6": {
+			"name": "Cerebral Affliction",
+			"desc": "This operative does not gain a Battle Scar but does not gain any experience from this battle."
+	}
+}

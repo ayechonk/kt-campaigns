@@ -1,0 +1,106 @@
+{
+	"0": {
+			"1": {
+					"name": "Inexorable",
+					"desc": " Each time this operative fights in combat, the enemy operative in that combat cannot be supported."
+			},
+			"2": {
+					"name": "Bladework",
+					"desc": " Each time this operative fights in combat, in the Roll Attack Dice step of that combat, you can re-roll one of your attack dice."
+			},
+			"3": {
+					"name": "Dirty Fighter",
+					"desc": " Each time this operative fights in combat, if any friendly operatives are supporting them, add 1 to the Attacks characteristic of their melee weapons for that combat."
+			},
+			"4": {
+					"name": "Vicious",
+					"desc": " Add 1 to the Critical Damage characteristic of this operative's melee weapons."
+			},
+			"5": {
+					"name": "Duellist",
+					"desc": " Each time this operative fights in combat, subtract 1 from the Weapon Skill characteristic of the enemy operative for that combat."
+			},
+			"6": {
+					"name": "Savage",
+					"desc": " Each time this operative fights in combat, in the Roll Attack Dice step of that combat, if you retain any critical hits, you can inflict one Mortal Wound on the enemy operative in that combat."
+			}
+	},
+	"1": {
+			"1": {
+					"name": "Resilient",
+					"desc": " Add 2 to this operative's Wounds characteristic."
+			},
+			"2": {
+					"name": "Shrug Off",
+					"desc": " Each time this operative is the target of a shooting attack, in the Roll Attack Dice step of that shooting attack, you can change one of your opponent's retained critical hits to a normal hit."
+			},
+			"3": {
+					"name": "Focused",
+					"desc": " When determining control of an objective marker, treat this operative's APL characteristic as being 1 higher. Note that this is not a modifier."
+			},
+			"4": {
+					"name": "Stalwart",
+					"desc": " This operative is never injured."
+			},
+			"5": {
+					"name": "Invulnerable",
+					"desc": " Each time this operative is the target of a shooting attack, in the roll defence dice step of that shooting attack, ignore the AP1 special rule."
+			},
+			"6": {
+					"name": "Indomitable",
+					"desc": "Each time this operative would lose a wound as a result of a mortal wound or critical damage, roll one D6: on a 5+, that wound is not lost."
+			}
+	},
+	"2": {
+			"1": {
+					"name": "Gun Ace",
+					"desc": " Each time this operative makes a shooting attack, in the Roll Attack Dice step of that shooting attack, you can re-roll one of your attack dice."
+			},
+			"2": {
+					"name": "Crack Shot",
+					"desc": " Each time this operative makes a shooting attack, if you roll any critical hits, inflict one mortal wound on the target."
+			},
+			"3": {
+					"name": "Calculated",
+					"desc": " Each time this operative performs an Overwatch action, for that action's shooting attack, do not worsen the Ballistic Skill characteristic of its ranged weapons as a result of performing an Overwatch action."
+			},
+			"4": {
+					"name": "Careful Aim",
+					"desc": " Each time this operative makes a shooting attack, when determining if the intended target is in Cover, Cover lines ignore the bases of all other operatives."
+			},
+			"5": {
+					"name": "Sharpshooter",
+					"desc": " Each time this operative performs a Shoot action, when you would retain attack dice for that action's shooting attack, if it has not performed a Normal Move, Fall Back or Charge action during that activation, you can select one of your results of 5+ to be retained as a critical hit."
+			},
+			"6": {
+					"name": "Death From Above",
+					"desc": " Once per Turning Point, after this operative makes a shooting attack while on a Vantage Point, if the target did not lose any wounds as a result of that shooting attack, repeat that shooting attack."
+			}
+	},
+	"3": {
+			"1": {
+					"name": "Runner",
+					"desc": " Each time this operative is activated, so long as it does not perform a Shoot or Fight action during that activation, it can perform one free Dash action."
+			},
+			"2": {
+					"name": "Swift",
+					"desc": " This operative can perform a Dash action more than once during its Activation. In addition, it automatically passes Jump tests and does not need to spend  to traverse."
+			},
+			"3": {
+					"name": "Covert",
+					"desc": " When this operative is activated during the first Turning Point, you can change its order."
+			},
+			"4": {
+					"name": "Picket",
+					"desc": " During the Set Up Operatives step of the mission sequence, this operative can be set up within  of your drop zone."
+			},
+			"5": {
+					"name": "Evasive",
+					"desc": " Each time this operative is the target of a shooting attack, in the Roll Defence Dice step of that shooting attack, if it has a Conceal order, you can re-roll one of your defence dice."
+			},
+			"6": {
+					"name": "Dodge",
+					"desc": " Each time this operative performs a Normal Move or Dash action, it can move within Engagement Range of enemy operatives, but cannot finish that move within Engagement Range of them. Each time this operative performs a Charge action, so long as it finishes that move within Engagement Range of an enemy operative, it can move within Engagement Range of any enemy operatives during that move."
+			}
+	}
+}

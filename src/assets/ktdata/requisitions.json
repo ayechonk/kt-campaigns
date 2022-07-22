@@ -1,0 +1,37 @@
+{
+	"0": {
+			"name": "Operative Assigned",
+			"cost": 1,
+			"desc": "Purchase this Requisition before or after a game. Add one operative to your dataslate. This must be an operative from your faction."
+	},
+	"1": {
+			"name": "Equipment Drop",
+			"cost": 1,
+			"desc": "Purchase this Requisition before or after a game. Select up to 5 points worth of your faction’s equipment and add it to your stash."
+	},
+	"2": {
+			"name": "Asset Acquired",
+			"cost": 1,
+			"desc": "Purchase this Requisition before or after a game. Add one strategic asset to your base of operations."
+	},
+	"3": {
+			"name": "Medivac",
+			"cost": 1,
+			"desc": "Purchase this Requisition in the Update Dataslates step of a mission sequence, after rolling to determine a Battle Scar for a friendly operative. That operative suffers Cerebral Affliction instead, and cannot be selected for deployment in the next battle."
+	},
+	"4": {
+			"name": "Recuperate",
+			"cost": 1,
+			"desc": "Purchase this Requisition in the Update Dataslates step of a mission sequence, after rolling a Recovery test for a friendly operative that did not take part in the battle. Add 1 to the result of that Recovery test."
+	},
+	"5": {
+			"name": "Proficient Operative",
+			"cost": 1,
+			"desc": "Purchase this Requisition in the Update Dataslates step of a mission sequence, when a friendly operative gains the Grizzled or Revered rank. You can select one additional specialism for that operative from the specialisms specified on its datacard, and can determine the Battle Honours it gains from any of its specialisms. Each operative can only be upgraded with this Requisition once."
+	},
+	"6": {
+			"name": "Weaponsmith",
+			"cost": 1,
+			"desc": "Purchase this Requisition before or after a game. Select a friendly operative with the Ace, Grizzled or Revered rank. Weapons that operative is equipped with can be upgraded with the rare equipment twice, rather than once. Each operative can only be upgraded with this Requisition once."
+	}
+}

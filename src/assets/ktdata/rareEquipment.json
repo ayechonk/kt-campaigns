@@ -1,0 +1,74 @@
+{
+	"1": {
+			"name": "Auto-loader",
+			"cost": 2,
+			"desc": "This weapon gains the Ceaseless special rule.",
+			"type": "ranged"
+	},
+	"2": {
+			"name": "Flux Capacitor",
+			"cost": 2,
+			"desc": "This weapon gains the P1 critical hit rule.",
+			"type": "ranged"
+	},
+	"3": {
+			"name": "Rending Rounds",
+			"cost": 2,
+			"desc": "This weapon gains the Rending special rule.",
+			"type": "ranged"
+	},
+	"4": {
+			"name": "Propulsion Amplifier",
+			"cost": 2,
+			"desc": "Add 1 to both Damage characteristics of this weapon.",
+			"type": "ranged"
+	},
+	"5": {
+			"name": "Thermal Sight",
+			"cost": 2,
+			"desc": "This weapon gains the No Cover special rule.",
+			"type": "ranged"
+	},
+	"6": {
+			"name": "Seeker Spirit",
+			"cost": 2,
+			"desc": "Each time a friendly operative makes a shooting attack with this weapon, in the Roll Attack Dice step of that shooting attack, for each critical hit you retain, you can re-roll one of your attack dice.",
+			"type": "ranged"
+	},
+	"7": {
+			"name": "Power Enhancer",
+			"cost": 2,
+			"desc": "Add 1 to both Damage characteristics of this weapon.",
+			"type": "melee"
+	},
+	"8": {
+			"name": "Inertia Displacer",
+			"cost": 2,
+			"desc": "This weapon gains the Brutal special rule.",
+			"type": "melee"
+	},
+	"9": {
+			"name": "Perfectly Weighted",
+			"cost": 2,
+			"desc": "This weapon gains the Balanced special rule.",
+			"type": "melee"
+	},
+	"10": {
+			"name": "Rending Blade",
+			"cost": 2,
+			"desc": "This weapon gains the Rending special rule.",
+			"type": "melee"
+	},
+	"11": {
+			"name": "Monomolecular Edge",
+			"cost": 2,
+			"desc": "This weapon gains the Lethal 5+ special rule.",
+			"type": "melee"
+	},
+	"12": {
+			"name": "Arc Unit",
+			"cost": 2,
+			"desc": "This weapon gains the Stun critical hit rule.",
+			"type": "melee"
+	}
+}
