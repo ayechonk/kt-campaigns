@@ -2,19 +2,15 @@
 	<div class="container mt-1">
 		<SaveButton @click="saveOperative" />
 		<h4 v-if="operative.name !== ''">
-			{{ getRank(operative.experience) }} {{ operative.specialism }} {{ operative.name }}
+			{{ getRank  }} {{ getSpeicalismName }} {{ operative.name }}
 		</h4>
-		<div class="form-floating mb-3">
-			<input type="text" class="form-control " :class="{ 'is-invalid': errors['operative'] }"
-				v-model="operative.name" placeholder="Kill Team Name">
-			<label v-if="!errors['operative']">Operative</label>
-			<label v-if="errors['operative']" class="text-orange">You must have a unique name!</label>
+		<div class="mb-3">
+			<TextboxInput v-model="operative.name" label="Operative Name" errorLabel="You must have a unique name!"
+				:isValid="!errors['name']"/>
 		</div>
-		<div class="form-floating mb-3">
-			<input type="text" class="form-control" :class="{ 'is-invalid': errors['operativeType'] }"
-				v-model="operative.operativeType" placeholder="Kill Team Name">
-			<label v-if="!errors['operativeType']">Operative Type</label>
-			<label v-if="errors['operativeType']" class="text-orange">You must have a type!</label>
+		<div class="mb-3">
+			<SelectInput v-model="operative.type" :options="getOperativesForKillTeam" label="Operative Type"
+				errorLabel="You must select a faction!" :isValid="!errors['type']" />
 		</div>
 		<div class="form-floating mb-3">
 			<input type="text" class="form-control " v-model="operative.battleHonours" placeholder="Kill Team Name">
@@ -28,19 +24,13 @@
 			<textarea type="text" class="form-control " v-model="operative.notes" placeholder="Kill Team Name"></textarea>
 			<label>Notes</label>
 		</div>
-		<div class="form-floating mb-3">
-			<input type="number" class="form-control " v-model="operative.restedTally" placeholder="Kill Team Name">
-			<label>Rested Tally</label>
+		<div class="mb-3">
+			<TextboxInput inputType="number" v-model="operative.restedTally" label="Rested Tally" errorLabel="You must have a unique name!"
+				:isValid="!errors['restedTally']"/>
 		</div>
-		<div class="form-floating mb-3">
-			<select class="form-control" v-model="operative.specialism">
-				<option value="">Select Specialism</option>
-				<option value="0">Combat</option>
-				<option value="1">Staunch</option>
-				<option value="2">Marksmen</option>
-				<option value="3">Scout</option>
-			</select>
-			<label>Specialism</label>
+		<div class="mb-3">
+			<SelectInput v-model="operative.specialism" :options="getSpecialismsOptions" label="Specialism"
+				errorLabel="You must pick a specialism!" :isValid="!errors['specialism']" />
 		</div>
 		<div class="form-floating mb-3">
 			<input type="number" class="form-control " v-model="operative.experience" placeholder="Kill Team Name">
@@ -50,40 +40,35 @@
 </template>
 <script>
 import SaveButton from "./layout/SaveButton.vue";
+import TextboxInput from "./layout/TextboxInput.vue";
+import SelectInput from "./layout/SelectInput.vue";
+
+import ktoperatives from "@/assets/ktdata/operatives.json"
 
 export default {
 	name: "OperativeForm",
 	props: {
-		currentOperative: Object
+		currentOperative: Object,
+		factionId: String,
+		specialisms: Object
 	},
 	data: function () {
 		return {
 			errors: {},
 			operative: {
 				"name": "",
-				"operativeType": "",
+				"type": "",
 				"battleHonours": "",
 				"battleScars": "",
 				"notes": "",
 				"restedTally": 0,
-				"specialism": "",
+				"specialism": "0",
 				"experience": 0
 			}
 		};
 	},
 	methods: {
-		"getRank": function (exp) {
-			if (exp <= 5)
-				return "Adept";
-			else if (exp <= 15)
-				return "Veteran";
-			else if (exp <= 30)
-				return "Ace";
-			else if (exp <= 50)
-				return "Grizzled";
-			else
-				return "Revered";
-		},
+		
 		saveOperative: function () {
 			if (this.validateOperative()) {
 				this.$emit("save", this.operative);
@@ -95,19 +80,48 @@ export default {
 				valid = false;
 				this.errors["operative"] = true;
 			}
-			if (!this.operative.operativeType) {
+			if (!this.operative.type) {
 				valid = false;
-				this.errors["operativeType"] = true;
+				this.errors["type"] = true;
 			}
 			return valid;
 		},
 	},
-	components: { SaveButton },
+	computed: {
+		getOperativesForKillTeam: function () {
+			return Object.entries(ktoperatives)
+				.filter(arr => this.factionId === arr[1].factionId)
+				.map(arr => { return [arr[0], arr[1].name] })
+				.sort((a, b) => (a[1] > b[1] ? 1 : -2))
+		},
+		getSpecialismsOptions: function () {
+			return Object.entries(this.specialisms)
+				.map(arr => { return [arr[0], arr[1].name] })
+		},
+		getSpeicalismName: function(){
+			return Object.entries(this.specialisms)
+				.find(arr => arr[0] === this.operative.specialism )[1].name
+		},
+		getRank: function () {
+			let exp = this.operative.experience
+			if (exp <= 5)
+				return "Adept";
+			else if (exp <= 15)
+				return "Veteran";
+			else if (exp <= 30)
+				return "Ace";
+			else if (exp <= 50)
+				return "Grizzled";
+			else
+				return "Revered";
+		},
+	},
+	components: { SaveButton, TextboxInput, SelectInput },
 
 	beforeMount: function () {
 		if (this.currentOperative) {
 			this.operative.name = this.currentOperative.name,
-				this.operative.operativeType = this.currentOperative.operativeType,
+				this.operative.type = this.currentOperative.type,
 				this.operative.battleHonours = this.currentOperative.battleHonours,
 				this.operative.battleScars = this.currentOperative.battleScars,
 				this.operative.notes = this.currentOperative.notes,

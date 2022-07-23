@@ -5,7 +5,7 @@
 		<form class="row">
 			<div class="col-sm-4">
 				<div class="mb-3">
-					<TextboxInput v-model="name" label="Kill Team Name" errorLabel="You must have a unique name!"
+					<TextboxInput v-model="name"  label="Kill Team Name" errorLabel="You must have a unique name!"
 						:isValid="!errors['name']" />
 				</div>
 				<div class="mb-3">

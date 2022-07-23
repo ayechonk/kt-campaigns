@@ -2,7 +2,7 @@
 	<div class="container mt-1 ">
 		<h2 class="text-start">{{ campaignName }} - Operatives</h2>
 		<div v-for="op in operatives" :key="op.operative">
-			<OperativeCard :campaignName="campaignName" :op="op" />
+			<OperativeCard :campaignName="campaignName" :op="op" :ktoperatives="this.ktoperatives" />
 		</div>
 		<router-link :to="{ name: 'operativeSingle', params: { campaignName } }">
 			<OrangeCard style="cursor:pointer" title="Add New Operative" />
@@ -13,6 +13,9 @@
 import store from 'store-js';
 import OrangeCard from './layout/OrangeCard.vue';
 import OperativeCard from './OperativeCard.vue';
+
+import ktoperatives from "@/assets/ktdata/operatives.json"
+
 export default {
 	name: "CampaignOperatives",
 	props: {
@@ -20,7 +23,8 @@ export default {
 	},
 	data: function () {
 		return {
-			operatives: []
+			operatives: [],
+			ktoperatives: ktoperatives
 		}
 	},
 	beforeMount: function () {

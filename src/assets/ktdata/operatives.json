@@ -1,25 +1,30 @@
 {
-	"14": [
-		{
-			"operativeType": "Plague Marine Warrior"
-		},
-		{
-			"operativeType": "Plague Marine Heavy Gunner"
-		},
-		{
-			"operativeType": "Plague Marine Gunner"
-		},
-		{
-			"operativeType": "Plague Marine Fighter"
-		},
-		{
-			"operativeType": "Plague Marine Champion"
-		},
-		{
-			"operativeType": "Plague Marine Icon Bearer"
-		},
-		{
-			"operativeType": "Poxwalker"
-		}
-	]
+	"0": {
+			"name": "Plague Marine Warrior",
+			"factionId": "14"
+	},
+	"1": {
+			"name": "Plague Marine Heavy Gunner",
+			"factionId": "14"
+	},
+	"2": {
+			"name": "Plague Marine Gunner",
+			"factionId": "14"
+	},
+	"3": {
+			"name": "Plague Marine Fighter",
+			"factionId": "14"
+	},
+	"4": {
+			"name": "Plague Marine Champion",
+			"factionId": "14"
+	},
+	"5": {
+			"name": "Plague Marine Icon Bearer",
+			"factionId": "14"
+	},
+	"6": {
+			"name": "Poxwalker",
+			"factionId": "14"
+	}
 }

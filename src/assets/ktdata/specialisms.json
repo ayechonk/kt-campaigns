@@ -1,0 +1,14 @@
+{
+	"0": {
+		"name": "Combat"
+	},
+	"1": {
+		"name": "Staunch"
+	},
+	"2": {
+		"name": "Marksmen"
+	},
+	"3": {
+		"name": "Scout"
+	}
+}

@@ -1,10 +1,12 @@
 <template>
     <div>
-        <OperativeForm :campaignName="campaignName" :currentOperative="operative" @save="saveOperative" />
+        <OperativeForm :campaignName="campaignName" :currentOperative="operative" @save="saveOperative" :specialisms="getSpecialisms()" :factionId="getKillTeamId()" />
     </div>
 </template>
 <script>
 import store from 'store-js'
+import specialisms from "@/assets/ktdata/specialisms.json"
+
 import OperativeForm from "../components/OperativeForm.vue";
 export default {
     props: {
@@ -28,15 +30,17 @@ export default {
         saveOperative: function (operative) {
             let operatives = store.get('ops')
             if (!operatives) this.$router.push("/error");
+
             let currentOperatives = operatives[this.campaignName];
             if (!currentOperatives) this.$router.push("/error")
+
             let key = operative.name;
             if (this.operativeName && currentOperatives[this.operativeName]) {
                 delete currentOperatives[this.operativeName]
             }
             currentOperatives[key] = {
                 name: operative.name,
-                operativeType: operative.operativeType,
+                type: operative.type,
                 battleHonours: operative.battleHonours,
                 battleScars: operative.battleScars,
                 notes: operative.notes,
@@ -48,6 +52,18 @@ export default {
             store.set("ops", operatives)
             this.$router.push('/campaign/' + this.campaignName + '/operatives')
         },
+        getKillTeamId: function () {
+            let campaigns = store.get('campaigns')
+            if (!campaigns) this.$router.push('/error')
+
+            let curCampaign = campaigns[this.campaignName]
+            if (!curCampaign) this.$router.push('/error')
+
+            return curCampaign.faction;
+        },
+        getSpecialisms: () => {
+            return specialisms
+        }
     },
     beforeMount: function () {
         this.operative = this.getOpearative();
