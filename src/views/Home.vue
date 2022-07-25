@@ -1,5 +1,5 @@
 <template>
-	<div class="container mt-1 ">
+	<div>
 		<h2 class="text-start">Your Narrative Campaigns</h2>
 		<div v-for="c in campaigns" :key="c.name">
 			<CampaignCard :name="c.name" />

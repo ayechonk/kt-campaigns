@@ -1,5 +1,5 @@
 <template>
-	<div class="container mt-1 ">
+	<div class="mt-1 ">
 		<h2 class="text-start">{{ campaignName }} - Operatives</h2>
 		<div v-for="op in operatives" :key="op.operative">
 			<OperativeCard :campaignName="campaignName" :op="op" :ktoperatives="this.ktoperatives" />

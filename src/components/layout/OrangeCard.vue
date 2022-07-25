@@ -1,7 +1,7 @@
 <template>
 	<div class="bg-orange mb-3" style="padding:2px">
 		<div class="text-start corner p-3">
-			{{ title }}
+			{{ title }}<slot></slot>
 		</div>
 	</div>
 </template>

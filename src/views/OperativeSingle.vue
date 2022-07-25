@@ -1,6 +1,7 @@
 <template>
     <div>
-        <OperativeForm :campaignName="campaignName" :currentOperative="operative" @save="saveOperative" :specialisms="getSpecialisms()" :factionId="getKillTeamId()" />
+        <OperativeForm :campaignName="campaignName" :currentOperative="operative" @save="saveOperative"
+            :specialisms="getSpecialisms()" :factionId="getKillTeamId()" />
     </div>
 </template>
 <script>

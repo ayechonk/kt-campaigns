@@ -8,7 +8,9 @@
         <img alt="KillTeam logo" id="img-logo" src="./assets/logo.png" style="filter:invert(1)">
       </router-link>
     </div>
-    <router-view></router-view>
+    <div class="container mt-1">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -75,11 +77,13 @@ a {
 }
 
 .text-orange {
-	color: #c54c21 !important;
+  color: #c54c21 !important;
 }
+
 .bg-orange {
-	background-color: #c54c21 !important;
+  background-color: #c54c21 !important;
 }
+
 .btn {
   border-radius: 0 !important;
 }

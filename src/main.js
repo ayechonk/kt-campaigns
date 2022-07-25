@@ -12,6 +12,9 @@ import EditCampaign from './views/EditCampaign.vue'
 import CampaignForm from './components/CampaignForm.vue'
 import CampaignOperatives from './components/CampaignOperatives.vue'
 import OperativeSingle from './views/OperativeSingle.vue'
+import StrategicAssetsView from './views/StrategicAssetsView.vue'
+import Requisitions from './views/RequisitionsView.vue'
+
 
 const routes = [
 	{ path: '/', component: Home },
@@ -19,6 +22,8 @@ const routes = [
 	{ path: '/campaign/:campaignName', name: "campaign", component: EditCampaign, props: true },
 	{ path: '/campaign/:campaignName/operatives', name: "campaignOps", component: CampaignOperatives, props: true },
 	{ path: '/campaign/:campaignName/operative/:operativeName?', name: "operativeSingle", component: OperativeSingle, props: true },
+	{ path: '/campaign/:campaignName/strategicAssets', name: "strategicAssets", component: StrategicAssetsView, props: true },
+	{ path: '/campaign/:campaignName/requisitions', name: "requisitions", component: Requisitions, props: true },
 ]
 const router = createRouter({
 	history: createWebHistory(),

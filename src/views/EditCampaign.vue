@@ -1,8 +1,11 @@
 <template>
-	<div class="container mt-1 ">
+	<div>
 		<h2 class="text-start">{{ campaignName }}</h2>
 		<router-link :to="{ 'name': 'campaignOps', params: { 'campaignName': campaignName } }">
 			<OrangeCard title="Operatives" />
+		</router-link>
+		<router-link :to="{ 'name': 'requisitions' }"  >
+			<OrangeCard title="Requisitions" />
 		</router-link>
 		<OrangeCard style="cursor:pointer;" title="Engage Combat!" @click="alert" />
 		<OrangeCard style="cursor:pointer;" title="Edit Campaign" @click="alert" />
@@ -22,17 +25,12 @@ export default {
 	components: { OrangeCard, Modal },
 	data: function () {
 		return {
-			deleteCampaignModalDisplay: "none"
+			deleteCampaignModalDisplay: "none",
+			currentCampaign: {}
 		}
 	},
 	props: {
 		campaignName: String
-	},
-	beforeMount: function () {
-		let campaigns = store.get('campaigns');
-		if (!campaigns) this.$router.push('/error')
-		let curCampaign = campaigns[this.campaignName]
-		if (!curCampaign) this.$router.push('/404')
 	},
 	methods: {
 		deleteCampaign: function () {
